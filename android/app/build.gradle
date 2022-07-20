@@ -239,6 +239,7 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            matchingFallbacks = ['debug', 'release']
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -246,6 +247,18 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+
+    flavorDimensions "env"
+    productFlavors {
+        production {
+            dimension "env"
+            applicationId 'com.myapp'
+        }
+        development {
+            dimension "env"
+            applicationId 'com.myapp.dev'
         }
     }
 
